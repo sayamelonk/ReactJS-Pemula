@@ -1,5 +1,7 @@
-const AboutView = () => {
-  return <h1>About View</h1>
-};
+import TittleHeader from '../components/TittleHeader'
 
-export default AboutView;
+const AboutView = () => {
+  return <TittleHeader title="About" />
+}
+
+export default AboutView

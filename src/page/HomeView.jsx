@@ -1,5 +1,7 @@
-const HomeView = () => {
-  return <h1>Home View</h1>
-};
+import TittleHeader from '../components/TittleHeader'
 
-export default HomeView;
+const HomeView = () => {
+  return <TittleHeader title={'Home'} />
+}
+
+export default HomeView

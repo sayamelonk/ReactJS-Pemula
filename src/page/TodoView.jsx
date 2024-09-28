@@ -1,5 +1,7 @@
-const TodoView = () => {
-  return <h1>Todo View</h1>
-};
+import TittleHeader from '../components/TittleHeader'
 
-export default TodoView;
+const TodoView = () => {
+  return <TittleHeader title="Todo" />
+}
+
+export default TodoView

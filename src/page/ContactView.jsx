@@ -1,5 +1,7 @@
-const ContactView = () => {
-  return <h1>Contact View</h1>
-};
+import TittleHeader from '../components/TittleHeader'
 
-export default ContactView;
+const ContactView = () => {
+  return <TittleHeader title="Contanct" />
+}
+
+export default ContactView

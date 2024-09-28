@@ -28,7 +28,7 @@ function App() {
   return (
     <>
       <Navigation listItem={listItem} />
-      <main className="h-screen">
+      <main className="mx-auto my-10 max-w-6xl px-20 py-20 h-screen bg-slate-50">
         <Outlet />
       </main>
       <Footer />
