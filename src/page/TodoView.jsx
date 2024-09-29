@@ -4,7 +4,7 @@ import TittleHeader from '../components/TittleHeader'
 import { useState } from 'react'
 
 const TodoView = () => {
-  const [todoList, setTodoList] = useState([
+  const [todoList] = useState([
     {
       id: 1,
       title: 'Bangun Tidur',
