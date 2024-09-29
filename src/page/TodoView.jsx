@@ -1,11 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import TittleHeader from '../components/TittleHeader'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { TodoContext } from '../context/TodoContext'
 
 const TodoView = () => {
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
+
+  const { todoList, addTodo, changeStatusTodo } = useContext(TodoContext)
 
   const inputTitle = (event) => {
     setTitle(event.target.value)
@@ -17,16 +20,7 @@ const TodoView = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    let todoArray = todoList.length
-    setTodoList([
-      ...todoList,
-      {
-        id: todoArray + 1,
-        title: title,
-        body: body,
-        isComplete: false,
-      },
-    ])
+    addTodo(title, body)
     setTitle('')
     setBody('')
   }
@@ -34,34 +28,8 @@ const TodoView = () => {
   // console.log(title, body)
 
   const changeStatus = (id) => {
-    setTodoList((itemTodo) =>
-      itemTodo.map((data) =>
-        data.id === id ? { ...data, isComplete: true } : data,
-      ),
-    )
-    console.log(todoList)
+    changeStatusTodo(id)
   }
-
-  const [todoList, setTodoList] = useState([
-    {
-      id: 1,
-      title: 'Bangun Tidur',
-      body: 'Bangun Tidur di Pagi Hari',
-      isComplete: true,
-    },
-    {
-      id: 2,
-      title: 'Makan Pagi',
-      body: 'Makan Soto Lamongan/Nasi Campur',
-      isComplete: false,
-    },
-    {
-      id: 3,
-      title: 'Kerja',
-      body: 'Kerja Kantoran dari Jam 9 Pagi - 5 Sore',
-      isComplete: false,
-    },
-  ])
 
   useEffect(() => {
     console.log('Todo Updated:', todoList)

@@ -5,6 +5,7 @@ import HomeView from './page/HomeView.jsx'
 import AboutView from './page/AboutView.jsx'
 import TodoView from './page/TodoView.jsx'
 import ContactView from './page/ContactView.jsx'
+import { TodoProvider } from './context/TodoContext.jsx'
 
 import {
   createBrowserRouter,
@@ -25,5 +26,7 @@ const router = createBrowserRouter(
 )
 
 createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />,
+  <TodoProvider>
+    <RouterProvider router={router} />
+  </TodoProvider>,
 )
