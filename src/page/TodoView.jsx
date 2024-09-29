@@ -4,7 +4,36 @@ import TittleHeader from '../components/TittleHeader'
 import { useState } from 'react'
 
 const TodoView = () => {
-  const [todoList] = useState([
+  const [title, setTitle] = useState('')
+  const [body, setBody] = useState('')
+
+  const inputTitle = (event) => {
+    setTitle(event.target.value)
+  }
+
+  const inputBody = (event) => {
+    setBody(event.target.value)
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    let todoArray = todoList.length
+    setTodoList([
+      ...todoList,
+      {
+        id: todoArray + 1,
+        title: title,
+        body: body,
+        isComplete: false,
+      },
+    ])
+    setTitle('')
+    setBody('')
+  }
+
+  // console.log(title, body)
+
+  const [todoList, setTodoList] = useState([
     {
       id: 1,
       title: 'Bangun Tidur',
@@ -34,11 +63,13 @@ const TodoView = () => {
           <h1 className="text-3xl text-center font-semibold my-3">
             Tambah Todo
           </h1>
-          <form action="">
+          <form onSubmit={handleSubmit}>
             <div className="mb-6">
               <label className="block mb-2 font-medium">Title</label>
               <input
                 type="text"
+                onChange={inputTitle}
+                value={title}
                 className="bg-gray-50 border border-gray-300 rounded-lg block w-full p-2"
               />
             </div>
@@ -46,6 +77,8 @@ const TodoView = () => {
               <label className="block mb-2 font-medium">Body</label>
               <input
                 type="text"
+                onChange={inputBody}
+                value={body}
                 className="bg-gray-50 border border-gray-300 rounded-lg block w-full p-2"
               />
             </div>
