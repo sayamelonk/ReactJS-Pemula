@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import TittleHeader from '../components/TittleHeader'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const TodoView = () => {
   const [title, setTitle] = useState('')
@@ -33,6 +33,15 @@ const TodoView = () => {
 
   // console.log(title, body)
 
+  const changeStatus = (id) => {
+    setTodoList((itemTodo) =>
+      itemTodo.map((data) =>
+        data.id === id ? { ...data, isComplete: true } : data,
+      ),
+    )
+    console.log(todoList)
+  }
+
   const [todoList, setTodoList] = useState([
     {
       id: 1,
@@ -53,6 +62,10 @@ const TodoView = () => {
       isComplete: false,
     },
   ])
+
+  useEffect(() => {
+    console.log('Todo Updated:', todoList)
+  }, [todoList])
 
   return (
     <>
@@ -143,7 +156,10 @@ const TodoView = () => {
                         />
                       </span>
                     ) : (
-                      <button className="font-bold border rounded-lg p-3 bg-green-200 hover:bg-green-600">
+                      <button
+                        onClick={() => changeStatus(todo.id)}
+                        className="font-bold border rounded-lg p-3 bg-green-200 hover:bg-green-600"
+                      >
                         Success
                       </button>
                     )}
