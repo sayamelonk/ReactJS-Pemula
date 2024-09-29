@@ -1,6 +1,30 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import TittleHeader from '../components/TittleHeader'
+import { useState } from 'react'
 
 const TodoView = () => {
+  const [todoList, setTodoList] = useState([
+    {
+      id: 1,
+      title: 'Bangun Tidur',
+      body: 'Bangun Tidur di Pagi Hari',
+      isComplete: true,
+    },
+    {
+      id: 2,
+      title: 'Makan Pagi',
+      body: 'Makan Soto Lamongan/Nasi Campur',
+      isComplete: false,
+    },
+    {
+      id: 3,
+      title: 'Kerja',
+      body: 'Kerja Kantoran dari Jam 9 Pagi - 5 Sore',
+      isComplete: false,
+    },
+  ])
+
   return (
     <>
       <TittleHeader title="Todo" />
@@ -50,24 +74,49 @@ const TodoView = () => {
                 <th scope="col" className="px-6 py-3">
                   Body
                 </th>
+                <th scope="col" className="px-6 py-3">
+                  Status
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Action
+                </th>
               </tr>
             </thead>
-            <tbody className="bg-orange-100 text-left">
-              <tr>
-                <td className="px-6 py-3">1</td>
-                <td className="px-6 py-3">Bangun Tidur</td>
-                <td className="px-6 py-3">Bangun Tidur + Buka IG</td>
-              </tr>
-              <tr>
-                <td className="px-6 py-3">2</td>
-                <td className="px-6 py-3">Makan</td>
-                <td className="px-6 py-3">Makan Pagi Nasi Uduk</td>
-              </tr>
-              <tr>
-                <td className="px-6 py-3">3</td>
-                <td className="px-6 py-3">Karja</td>
-                <td className="px-6 py-3">Kembali dari Weekend</td>
-              </tr>
+            <tbody className="bg-orange-100 text-center">
+              {todoList.map((todo) => (
+                <tr key={todo.id}>
+                  <td className="px-6 py-3">{todo.id}</td>
+                  <td className="px-6 py-3">{todo.title}</td>
+                  <td className="px-6 py-3">{todo.body}</td>
+                  <td className="px-6 py-3">
+                    {todo.isComplete ? (
+                      <FontAwesomeIcon
+                        icon={faCheckCircle}
+                        className="text-green-500"
+                      />
+                    ) : (
+                      <FontAwesomeIcon
+                        icon={faTimesCircle}
+                        className="text-red-500"
+                      />
+                    )}
+                  </td>
+                  <td>
+                    {todo.isComplete ? (
+                      <span>
+                        <FontAwesomeIcon
+                          icon={faCheckCircle}
+                          className="text-green-500"
+                        />
+                      </span>
+                    ) : (
+                      <button className="font-bold border rounded-lg p-3 bg-green-200 hover:bg-green-600">
+                        Success
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
