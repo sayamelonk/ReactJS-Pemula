@@ -82,13 +82,13 @@ const TodoView = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-orange-100 text-center">
+            <tbody className="bg-orange-100 text-left">
               {todoList.map((todo) => (
                 <tr key={todo.id}>
                   <td className="px-6 py-3">{todo.id}</td>
                   <td className="px-6 py-3">{todo.title}</td>
                   <td className="px-6 py-3">{todo.body}</td>
-                  <td className="px-6 py-3">
+                  <td className="px-6 py-3 text-center">
                     {todo.isComplete ? (
                       <FontAwesomeIcon
                         icon={faCheckCircle}
@@ -101,7 +101,7 @@ const TodoView = () => {
                       />
                     )}
                   </td>
-                  <td>
+                  <td className="text-center">
                     {todo.isComplete ? (
                       <span>
                         <FontAwesomeIcon
